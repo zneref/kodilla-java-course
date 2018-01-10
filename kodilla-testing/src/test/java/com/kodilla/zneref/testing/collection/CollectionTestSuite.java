@@ -1,6 +1,5 @@
-package com.kodilla.zneref.testing.forum.collection;
+package com.kodilla.zneref.testing.collection;
 
-import com.kodilla.zneref.testing.collection.OddNumbersExterminator;
 import com.kodilla.zneref.utils.RandomInts;
 import org.junit.*;
 
@@ -30,14 +29,18 @@ public class CollectionTestSuite {
 
     @Test
     public void testOddNumbersExterminatorEmptyList() {
+        // given
         ArrayList<Integer> testList = new ArrayList<>();
         OddNumbersExterminator ext = new OddNumbersExterminator();
+        // when
         ArrayList<Integer> result = ext.exterminate(testList);
+        // then
         Assert.assertEquals(result.size(), testList.size());
     }
 
     @Test
     public void testOddNumbersExterminatorNormalList() {
+        // given
         ArrayList<Integer> testList = new ArrayList<>();
         for (int i = 0; i < 100; i++) {
             testList.add(RandomInts.nextInt(1, 100));
@@ -47,7 +50,9 @@ public class CollectionTestSuite {
                 .filter(n -> n % 2 == 0)
                 .collect(Collectors.toCollection(ArrayList::new));
         OddNumbersExterminator ext = new OddNumbersExterminator();
+        // when
         ArrayList<Integer> result = ext.exterminate(testList);
+        // then
         Assert.assertEquals(evenList.size(),result.size());
     }
 }
