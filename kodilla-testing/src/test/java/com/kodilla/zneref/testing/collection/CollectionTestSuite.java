@@ -4,6 +4,7 @@ import com.kodilla.zneref.utils.RandomInts;
 import org.junit.*;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.stream.Collectors;
 
 public class CollectionTestSuite {
@@ -30,10 +31,10 @@ public class CollectionTestSuite {
     @Test
     public void testOddNumbersExterminatorEmptyList() {
         // given
-        ArrayList<Integer> testList = new ArrayList<>();
+        List<Integer> testList = new ArrayList<>();
         OddNumbersExterminator ext = new OddNumbersExterminator();
         // when
-        ArrayList<Integer> result = ext.exterminate(testList);
+        List<Integer> result = ext.exterminate(testList);
         // then
         Assert.assertEquals(result.size(), testList.size());
     }
@@ -41,18 +42,18 @@ public class CollectionTestSuite {
     @Test
     public void testOddNumbersExterminatorNormalList() {
         // given
-        ArrayList<Integer> testList = new ArrayList<>();
+        List<Integer> testList = new ArrayList<>();
         for (int i = 0; i < 100; i++) {
             testList.add(RandomInts.nextInt(1, 100));
         }
-        ArrayList<Integer> evenList = testList
+        List<Integer> evenList = testList
                 .stream()
                 .filter(n -> n % 2 == 0)
                 .collect(Collectors.toCollection(ArrayList::new));
         OddNumbersExterminator ext = new OddNumbersExterminator();
         // when
-        ArrayList<Integer> result = ext.exterminate(testList);
+        List<Integer> result = ext.exterminate(testList);
         // then
-        Assert.assertEquals(evenList.size(),result.size());
+        Assert.assertEquals(evenList.size(), result.size());
     }
 }
