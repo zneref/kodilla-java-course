@@ -49,7 +49,7 @@ public class CollectionTestSuite {
         List<Integer> evenList = testList
                 .stream()
                 .filter(n -> n % 2 == 0)
-                .collect(Collectors.toCollection(ArrayList::new));
+                .collect(Collectors.toList());
         OddNumbersExterminator ext = new OddNumbersExterminator();
         // when
         List<Integer> result = ext.exterminate(testList);
