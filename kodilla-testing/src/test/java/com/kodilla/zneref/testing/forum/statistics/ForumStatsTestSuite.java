@@ -101,8 +101,8 @@ public class ForumStatsTestSuite {
 
     private void testIt(int posts, int comments, List<String> users) {
         double ppu = posts / users.size();
-        double cpp = comments /posts;
-        double cpu = comments /users.size();
+        double cpp = comments / posts;
+        double cpu = comments / users.size();
         // given
         Statistics mockStats = mock(Statistics.class);
         when(mockStats.postsCount()).thenReturn(posts);
