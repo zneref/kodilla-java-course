@@ -92,25 +92,26 @@ public class BookLibraryTestSuite {
 
     @Test
     public void testListBooksInHandsOfWithOneBooks() {
-        testIt(1);
+        testListBooksInHandsOfWith(1);
     }
 
     @Test
     public void testListBooksInHandsOfWithFifeBooks() {
-        testIt(5);
+        testListBooksInHandsOfWith(5);
     }
 
-    private void testIt(int quantity) {
+    private void testListBooksInHandsOfWith(int booksQuantity) {
         // given
         LibraryUser usr = new LibraryUser("John", "Kowalsky", "9876543");
         LibraryDatabase libraryDatabaseMock = mock(LibraryDatabase.class);
-        List<Book> books = generateListOfNBooks(quantity);
+        List<Book> books = generateListOfNBooks(booksQuantity);
         when(libraryDatabaseMock.listBooksInHandsOf(usr)).thenReturn(books);
         // when
         BookLibrary lib = new BookLibrary(libraryDatabaseMock);
         List<Book> result = lib.listBooksInHandsOf(usr);
         // then
-        assertEquals(quantity, result.size());
+        verify(libraryDatabaseMock, times(1)).listBooksInHandsOf(usr);
+        assertEquals(booksQuantity, result.size());
         assertThat(books).containsExactlyElementsOf(result);
     }
 

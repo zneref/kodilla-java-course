@@ -10,17 +10,16 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 public class ForumStatsTestSuite {
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
     }
 
     @After
-    public void tearDown() throws Exception {
+    public void tearDown() {
     }
 
     @Test
@@ -37,7 +36,9 @@ public class ForumStatsTestSuite {
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> stats.calculateAdvStatistics(mockStats))
                 .withMessage("division by 0");
-
+        verify(mockStats, times(1)).postsCount();
+        verify(mockStats, times(1)).commentsCount();
+        verify(mockStats, times(1)).usersNames();
     }
 
     @Test
@@ -54,7 +55,9 @@ public class ForumStatsTestSuite {
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> stats.calculateAdvStatistics(mockStats))
                 .withMessage("division by 0");
-
+        verify(mockStats, times(1)).postsCount();
+        verify(mockStats, times(1)).commentsCount();
+        verify(mockStats, times(1)).usersNames();
     }
 
     @Test
@@ -62,7 +65,7 @@ public class ForumStatsTestSuite {
         final int posts = 1000, comments = 0;
         final List<String> users = Arrays.asList("jon", "jake", "katie", "stevie", "barbara");
 
-        testIt(posts, comments, users);
+        testCalculateAdvStatisticsForVariousNumberOf(posts, comments, users);
     }
 
     @Test
@@ -70,7 +73,7 @@ public class ForumStatsTestSuite {
         final int posts = 1000, comments = 2000;
         final List<String> users = Arrays.asList("jon", "jake", "katie", "stevie", "barbara");
 
-        testIt(posts, comments, users);
+        testCalculateAdvStatisticsForVariousNumberOf(posts, comments, users);
     }
 
     @Test
@@ -78,7 +81,7 @@ public class ForumStatsTestSuite {
         final int posts = 5000, comments = 2000;
         final List<String> users = Arrays.asList("jon", "jake", "katie", "stevie", "barbara");
 
-        testIt(posts, comments, users);
+        testCalculateAdvStatisticsForVariousNumberOf(posts, comments, users);
     }
 
     @Test
@@ -86,7 +89,7 @@ public class ForumStatsTestSuite {
         final int posts = 50, comments = 2000;
         final List<String> users = Arrays.asList("jon", "jake", "katie", "stevie", "barbara");
 
-        testIt(posts, comments, users);
+        testCalculateAdvStatisticsForVariousNumberOf(posts, comments, users);
     }
 
     @Test
@@ -96,10 +99,10 @@ public class ForumStatsTestSuite {
 
         for (int i = 1; i < 101; i++) users.add("User no: " + i);
 
-        testIt(posts, comments, users);
+        testCalculateAdvStatisticsForVariousNumberOf(posts, comments, users);
     }
 
-    private void testIt(int posts, int comments, List<String> users) {
+    private void testCalculateAdvStatisticsForVariousNumberOf(int posts, int comments, List<String> users) {
         double ppu = posts / users.size();
         double cpp = comments / posts;
         double cpu = comments / users.size();
@@ -112,6 +115,9 @@ public class ForumStatsTestSuite {
         ForumStats stats = new ForumStats();
         stats.calculateAdvStatistics(mockStats);
         // then
+        verify(mockStats, times(1)).postsCount();
+        verify(mockStats, times(1)).commentsCount();
+        verify(mockStats, times(1)).usersNames();
         assertThat(posts).isEqualTo(stats.getPosts());
         assertThat(comments).isEqualTo(stats.getComments());
         assertThat(users.size()).isEqualTo(stats.getUsers());
