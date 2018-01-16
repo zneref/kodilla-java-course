@@ -13,11 +13,13 @@ public class ForumStats {
         users = statistics.usersNames().size();
         comments = statistics.commentsCount();
 
-        if (users == 0 || posts == 0) throw new IllegalArgumentException("division by 0");
-
-        averagePostsPerUser = posts / users;
-        averageCommentsPerUser = comments / users;
-        averageCommentsPerPost = comments / posts;
+        try {
+            averagePostsPerUser = posts / users;
+            averageCommentsPerUser = comments / users;
+            averageCommentsPerPost = comments / posts;
+        } catch (ArithmeticException e) {
+            throw new IllegalArgumentException("division by 0");
+        }
     }
 
     public int getPosts() {
