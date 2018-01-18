@@ -112,7 +112,7 @@ public class BookLibraryTestSuite {
         // then
         verify(libraryDatabaseMock, times(1)).listBooksInHandsOf(usr);
         assertEquals(booksQuantity, result.size());
-        assertThat(books).containsExactlyElementsOf(result);
+        assertThat(result).containsExactlyElementsOf(books);
     }
 
     private List<Book> generateListOfNBooks(int booksQuantity) {
