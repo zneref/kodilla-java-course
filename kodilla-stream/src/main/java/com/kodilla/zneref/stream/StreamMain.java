@@ -1,5 +1,6 @@
 package com.kodilla.zneref.stream;
 
+import com.kodilla.zneref.stream.array.ArrayOperations;
 import com.kodilla.zneref.stream.beautifier.PoemBeautifier;
 import com.kodilla.zneref.stream.beautifier.PoemBeautifierWithNativeJava;
 import com.kodilla.zneref.stream.lambda.ExpressionExecWithNativeJava;
