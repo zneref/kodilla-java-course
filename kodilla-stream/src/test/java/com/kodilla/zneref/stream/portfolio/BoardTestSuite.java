@@ -148,8 +148,8 @@ public class BoardTestSuite {
         Board project = prepareTestData();
         //When
         double average = project.getTaskLists().stream()
-                .filter(ll -> ll.getName().equals("In progress"))
-                .flatMap(ll -> ll.getTasks().stream())
+                .filter(l -> l.getName().equals("In progress"))
+                .flatMap(l -> l.getTasks().stream())
                 .mapToLong(t -> DAYS.between(t.getCreated(), LocalDate.now()))
                 .average().orElse(Double.NaN);
         //Then
