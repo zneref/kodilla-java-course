@@ -1,4 +1,4 @@
-package com.kodilla.zneref.rps.services.config;
+package com.kodilla.zneref.rps.config;
 
 public class GameModes {
     public static final int SIMPLE = 1;

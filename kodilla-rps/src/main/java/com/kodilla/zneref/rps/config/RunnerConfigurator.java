@@ -1,4 +1,4 @@
-package com.kodilla.zneref.rps.services.config;
+package com.kodilla.zneref.rps.config;
 
 public class RunnerConfigurator {
     private final int gameMode;
