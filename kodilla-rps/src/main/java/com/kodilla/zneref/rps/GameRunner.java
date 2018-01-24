@@ -42,7 +42,8 @@ public class GameRunner {
                 int result = humanChoice.compareTo(computerChoice);
                 if (result < 0) computerScores++;
                 else if (result > 0) humanScores++;
-                System.out.println("Result after " + roundsCnt + " round [" + userName + " vs computer] is " + humanScores + " : " + computerScores);
+                System.out.println("Result after " + roundsCnt + " round [" + userName + " vs computer] is "
+                        + humanScores + " : " + computerScores);
                 roundsCnt++;
             }
             System.out.println("\nThe winner is: " + winner(humanScores, computerScores));
