@@ -1,7 +1,7 @@
 package com.kodilla.zneref.rps.services.player;
 
 import com.kodilla.zneref.rps.model.Figure;
-import com.kodilla.zneref.rps.services.config.GameModes;
+import com.kodilla.zneref.rps.config.GameModes;
 import com.kodilla.zneref.rps.utils.InputReader;
 
 import java.util.List;

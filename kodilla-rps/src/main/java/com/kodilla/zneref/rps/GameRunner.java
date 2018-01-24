@@ -2,7 +2,7 @@ package com.kodilla.zneref.rps;
 
 import com.kodilla.zneref.rps.model.Figure;
 import com.kodilla.zneref.rps.model.Figures;
-import com.kodilla.zneref.rps.services.config.RunnerConfigurator;
+import com.kodilla.zneref.rps.config.RunnerConfigurator;
 import com.kodilla.zneref.rps.services.player.ComputerPlayer;
 import com.kodilla.zneref.rps.services.player.HumanPlayer;
 import com.kodilla.zneref.rps.services.player.Player;

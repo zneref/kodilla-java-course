@@ -1,8 +1,8 @@
 package com.kodilla.zneref.rps;
 
 import com.kodilla.zneref.rps.model.FiguresNames;
-import com.kodilla.zneref.rps.services.config.GameModes;
-import com.kodilla.zneref.rps.services.config.RunnerConfigurator;
+import com.kodilla.zneref.rps.config.GameModes;
+import com.kodilla.zneref.rps.config.RunnerConfigurator;
 import com.kodilla.zneref.rps.utils.InputReader;
 
 public class RpsMain {
