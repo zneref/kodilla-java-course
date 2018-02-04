@@ -12,15 +12,13 @@ import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 public class QueryProcessor {
-    private Query query;
     private ScheduleProvider provider;
 
-    public QueryProcessor(Query query, ScheduleProvider provider) {
-        this.query = query;
+    public QueryProcessor(ScheduleProvider provider) {
         this.provider = provider;
     }
 
-    public List<Map<Flight, List<LocalDateTime>>> process() {
+    public List<Map<Flight, List<LocalDateTime>>> process(Query query) {
         List<Map<Flight, List<LocalDateTime>>> queryResult = new ArrayList<>();
         String from = query.getFrom();
         String to = query.getTo();

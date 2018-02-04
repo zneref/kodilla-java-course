@@ -3,12 +3,14 @@ package com.kodilla.zneref.good.patterns.challenges.food2door.services;
 import com.kodilla.zneref.good.patterns.challenges.food2door.model.Order;
 import com.kodilla.zneref.good.patterns.challenges.food2door.model.ProcessResult;
 
+import java.util.List;
+
 public class ProducerProcessor {
     private final OrderService orderService;
-    private final Order order;
+    private final List<Order> order;
     private boolean orderProcessResult;
 
-    public ProducerProcessor(OrderService orderService, Order order) {
+    public ProducerProcessor(OrderService orderService, List<Order> order) {
         this.orderService = orderService;
         this.order = order;
     }

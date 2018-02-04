@@ -15,11 +15,11 @@ public class SkyScannerMain {
         QueryRetriever queryRetriever = new QueryRetriever();
         List<Query> queries = queryRetriever.retrieve();
         ScheduleProvider scheduleProvider = ScheduleProvider.getInstance();
+        QueryProcessor queryProcessor = new QueryProcessor(scheduleProvider);
         for (Query query : queries) {
             System.out.println(query);
             System.out.println("------------------------------------------------------------------------");
-            QueryProcessor queryProcessor = new QueryProcessor(query, scheduleProvider);
-            List<Map<Flight, List<LocalDateTime>>> flights = queryProcessor.process();
+            List<Map<Flight, List<LocalDateTime>>> flights = queryProcessor.process(query);
             for (Map<Flight, List<LocalDateTime>> m : flights) {
                 for (Map.Entry e : m.entrySet()) System.out.println(e);
             }
