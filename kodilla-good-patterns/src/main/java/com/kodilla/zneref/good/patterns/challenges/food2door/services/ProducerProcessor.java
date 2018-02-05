@@ -7,16 +7,14 @@ import java.util.List;
 
 public class ProducerProcessor {
     private final OrderService orderService;
-    private final List<Order> order;
     private boolean orderProcessResult;
 
-    public ProducerProcessor(OrderService orderService, List<Order> order) {
+    public ProducerProcessor(OrderService orderService) {
         this.orderService = orderService;
-        this.order = order;
     }
 
-    public void process() {
-        orderProcessResult = orderService.execute(order);
+    public void process(List<Order> orders) {
+        orderProcessResult = orderService.execute(orders);
     }
 
     public void orderProcessResult() {
