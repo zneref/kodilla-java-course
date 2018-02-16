@@ -1,14 +1,17 @@
 package com.kodilla.zneref.patterns.singleton;
 
 public final class Logger {
-    private static Logger theOnlyOneLoggerInstance = null;
+    private static volatile Logger theOnlyOneLoggerInstance = null;
     private String lastLog = "";
 
     private Logger() {}
 
-    public static synchronized Logger getInstance() {
+    public static Logger getInstance() {
         if (theOnlyOneLoggerInstance == null) {
-            theOnlyOneLoggerInstance = new Logger();
+            synchronized (Logger.class) {
+                if (theOnlyOneLoggerInstance == null)
+                    theOnlyOneLoggerInstance = new Logger();
+            }
         }
         return theOnlyOneLoggerInstance;
     }
