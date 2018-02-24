@@ -12,10 +12,10 @@ public class SudokuGame {
         MatrixRetriever retriever = new MatrixRetriever();
         BoardValidator validator = new SudokuBoardValidator();
         SudokuBoard board = new SudokuBoard(retriever.retrieveFromInput(validator));
-        System.out.println("\nUnresolved sudoku:");
+        System.out.println("\nUnsolved sudoku:");
         System.out.println(board);
         SudokuResolver resolver = new SudokuResolver(validator);
-        System.out.print("Resolving sudoku, please wait...");
+        System.out.print("Solving sudoku, please wait...");
         int counter = 0;
         StringBuilder builder = new StringBuilder();
         while (counter < 5) {
@@ -25,7 +25,7 @@ public class SudokuGame {
             counter++;
         }
         if (resolver.resolveSudoku(board)) {
-            System.out.println("\n\nResolved sudoku:");
+            System.out.println("\n\nSolved sudoku:");
             System.out.println(board);
         } else System.out.println("Can't resolve sudoku.");
         sayBye();
