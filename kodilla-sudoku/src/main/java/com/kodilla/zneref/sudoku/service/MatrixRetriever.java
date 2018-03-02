@@ -24,7 +24,7 @@ public class MatrixRetriever {
                 if (validator.validate(i, j, value, matrix))
                     matrix[i][j] = value;
                 else {
-                    System.out.println("The " + value + " digit already exists in this row/column.");
+                    System.out.println("The " + value + " digit already exists in this row/column/section.");
                 }
             }
         }

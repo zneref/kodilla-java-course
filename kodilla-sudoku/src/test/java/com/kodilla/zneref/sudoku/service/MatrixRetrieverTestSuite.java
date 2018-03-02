@@ -9,11 +9,5 @@ public class MatrixRetrieverTestSuite {
 
     @Test
     public void retrieveFromInput() {
-        //Given
-        MatrixRetriever retriever = new MatrixRetriever();
-        int matrix[][] = retriever.retrieveFromInput();
-        SudokuBoard board = new SudokuBoard(matrix);
-        //When, Then
-        System.out.println(board);
     }
 }
