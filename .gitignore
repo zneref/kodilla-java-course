@@ -3,7 +3,6 @@
 out/
 gradlew
 gradlew.bat
-
 ### STS ###
 .apt_generated
 .classpath
@@ -28,3 +27,4 @@ nbdist/
 /gradlew
 src/main/resources/static/
 src/main/resources/templates/
+gradle/
