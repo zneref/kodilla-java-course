@@ -1,16 +1,17 @@
-package com.kodilla.testing2.google;
+package com.kodilla.testing2.ebay;
 
 import com.kodilla.testing2.config.WebDriverConfig;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-public class GoogleTestingApp {
+public class EbayTestingApp {
     public static  void main(String[] args) {
         WebDriver driver = WebDriverConfig.getDriver(WebDriverConfig.FIREFOX);
-        driver.get("https://www.google.com");
+        driver.get("https://www.ebay.com/");
 
-        WebElement search = driver.findElement(By.id("lst-ib"));
-        search.sendKeys("kodilla");
+        WebElement searchInput = driver.findElement(By.name("_nkw"));
+        searchInput.sendKeys("laptop");
+        searchInput.submit();
     }
 }
