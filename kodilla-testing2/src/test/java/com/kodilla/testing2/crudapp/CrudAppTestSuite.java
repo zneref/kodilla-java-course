@@ -64,6 +64,7 @@ public class CrudAppTestSuite {
 
     private void sendTaskToTrello(String taskName) throws InterruptedException {
         driver.navigate().refresh();
+        String parent = driver.getWindowHandle();
 
         while (!driver.findElement(By.xpath("//select[1]")).isDisplayed()) ;
 
@@ -79,6 +80,7 @@ public class CrudAppTestSuite {
                     buttonCreateCard.click();
                 });
         Thread.sleep(5000);
+        driver.switchTo().window(parent);
     }
 
     private void deleteAddedTask(String taskName) throws InterruptedException {
