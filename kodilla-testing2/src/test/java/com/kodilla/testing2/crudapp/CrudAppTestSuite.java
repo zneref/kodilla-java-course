@@ -5,9 +5,11 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.Random;
 import java.util.stream.Collectors;
@@ -18,6 +20,7 @@ public class CrudAppTestSuite {
 
     private static final String BASE_URL = "https://zneref.github.io/";
     private WebDriver driver;
+    private WebDriverWait wait;
     private Random generator;
 
     @Before
@@ -42,9 +45,9 @@ public class CrudAppTestSuite {
     }
 
     private String createCrudAppTestTask() throws InterruptedException {
-        final String TASK_NAME = "//form[contains(@action, \"createTask\")]/fieldset[1]/input";
-        final String TASK_CONTENT = "//form[contains(@action, \"createTask\")]/fieldset[2]/textarea";
-        final String ADD_BUTTON = "//form[contains(@action, \"createTask\")]/fieldset[3]/button";
+        final String TASK_NAME = "//form[contains(@action, \"tasks\")]/fieldset[1]/input";
+        final String TASK_CONTENT = "//form[contains(@action, \"tasks\")]/fieldset[2]/textarea";
+        final String ADD_BUTTON = "//form[contains(@action, \"tasks\")]/fieldset[3]/button";
 
         String taskName = "Task number" + generator.nextInt(100000);
         String taskContent = taskName + " content";
@@ -57,8 +60,7 @@ public class CrudAppTestSuite {
 
         WebElement button = driver.findElement(By.xpath(ADD_BUTTON));
         button.click();
-
-        Thread.sleep(5000);
+        waitForPageLoad(10);
         return taskName;
     }
 
@@ -77,7 +79,7 @@ public class CrudAppTestSuite {
                     WebElement buttonCreateCard = theForm.findElement(By.xpath(".//button[contains(@class, \"card-creation\")]"));
                     buttonCreateCard.click();
                 });
-        Thread.sleep(5000);
+        waitForPageLoad(10);
     }
 
     private void deleteAddedTask(String taskName) throws InterruptedException {
@@ -92,7 +94,7 @@ public class CrudAppTestSuite {
                     WebElement buttonDelete = theForm.findElement(By.xpath(".//button[4]"));
                     buttonDelete.click();
                 });
-        Thread.sleep(5000);
+        waitForPageLoad(10);
     }
 
     private boolean checkTaskExistsInTrello(String taskName) throws InterruptedException {
@@ -105,12 +107,13 @@ public class CrudAppTestSuite {
         driverTrello.findElement(By.id("password")).sendKeys("xxx");
         driverTrello.findElement(By.id("login")).submit();
 
-        Thread.sleep(2000);
+        waitForPageLoad(10);
 
         driverTrello.findElements(By.xpath("//a[@class=\"board-title\"]")).stream()
                 .filter(aHref -> aHref.findElements(By.xpath(".//span[@title=\"Kodilla Board\"]")).size() > 0)
                 .forEach(aHref -> aHref.click());
-        Thread.sleep(2000);
+
+        waitForPageLoad(10);
 
         result = driverTrello.findElements(By.xpath("//span")).stream()
                 .filter(theSpan -> theSpan.getText().contains(taskName))
@@ -118,5 +121,10 @@ public class CrudAppTestSuite {
                 .size() > 0;
         driverTrello.close();
         return result;
+    }
+
+    private void waitForPageLoad(int timeout) {
+        WebDriverWait wait = new WebDriverWait(driver, timeout);
+        wait.until(d -> ((JavascriptExecutor) d).executeScript("return document.readyState").equals("complete"));
     }
 }
